@@ -125,12 +125,16 @@ public class TicketSystem {
     }
 
     public void printBooked() {
-        for(Passenger p : passenger.values()) {
-            System.out.println("Passenger name: " + p.name);
-            System.out.println("Passenger age: " + p.age);
-            System.out.println("Passenger id: " + p.passengerId);
-            System.out.println("Seat alloted: " + p.alloted +""+ p.number);
-        }
+        if(passenger.size() != 0) {
+            for(Passenger p : passenger.values()) {
+                System.out.println("Passenger name: " + p.name);
+                System.out.println("Passenger age: " + p.age);
+                System.out.println("Passenger id: " + p.passengerId);
+                System.out.println("Seat alloted: " + p.alloted +""+ p.number);
+            }
+        } else{
+            System.out.println("No tickets booked");
+        }   
     }
 
 

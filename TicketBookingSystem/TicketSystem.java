@@ -1,11 +1,11 @@
 import java.util.*;
 
 public class TicketSystem {
-    static int availableLowerBerths = 21;
-    static int availableUpperBerths = 21;
-    static int availableMiddleBerths = 21;
-    static int availableRac = 18;
-    static int availableWaiting = 10;
+    static int availableLowerBerths = 1;
+    static int availableUpperBerths = 1;
+    static int availableMiddleBerths = 1;
+    static int availableRac = 1;
+    static int availableWaiting = 1;
 
     List<Integer> bookedTickets = new ArrayList<>();
     static Queue<Integer> waitingList = new LinkedList<>();
@@ -18,19 +18,19 @@ public class TicketSystem {
     static List<Integer> waitingListPositions = new ArrayList<>();
 
     static {
-        for (int i = 1; i <= 21; i++) {
+        for (int i = 1; i <= 1; i++) {
             lowerBerthPositions.add(i);
         }
-        for (int i = 1; i <= 21; i++) {
+        for (int i = 1; i <= 1; i++) {
             middleBerthPositions.add(i);
         }
-        for (int i = 1; i <= 21; i++) {
+        for (int i = 1; i <= 1; i++) {
             upperBerthPositions.add(i);
         }
-        for (int i = 1; i <= 18; i++) {
+        for (int i = 1; i <= 1; i++) {
             racPositions.add(i);
         }
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 1; i++) {
             waitingListPositions.add(i);
         }
     }
@@ -43,7 +43,8 @@ public class TicketSystem {
 
         passenger.put(p.passengerId, p);
         bookedTickets.add(p.passengerId);
-        System.out.println("Ticket has been booked");
+        System.out.println("\nTicket has been booked");
+        System.out.println("\nYour passenger id is: " + p.passengerId);
     }
 
     public void addToRac(Passenger p, int racInfo, String allotedRac) {
@@ -56,7 +57,7 @@ public class TicketSystem {
 
         racPositions.remove(0);
 
-        System.out.println("Ticket moved to RAC");
+        System.out.println("\nTicket moved to RAC");
     }
 
     public void addToWaitingList(Passenger p, int waitingListInfo, String allotedWaitingList) {
@@ -69,7 +70,7 @@ public class TicketSystem {
 
         waitingListPositions.remove(0);
 
-        System.out.println("Ticket moved to waiting list");
+        System.out.println("\nTicket moved to waiting list");
     }
 
     public void cancelTicket(int passengerId) {
@@ -113,7 +114,9 @@ public class TicketSystem {
                 availableRac--;
             }
             BookTicketsHere.bookTicket(passengerFromRac);
+            //promoteRacToConfirmed(passengerFromRac);
         }
+        
     }
     public void promoteRacToConfirmed(Passenger p, int berthInfo, String allotedBerth) {
         if (p == null) {
@@ -136,7 +139,8 @@ public class TicketSystem {
     }
 
     public void printAvailable() {
-        System.out.println("Available upper berths: " + availableUpperBerths);
+        System.out.println("----- Ticket availability -----");
+        System.out.println("\nAvailable upper berths: " + availableUpperBerths);
         System.out.println("Available middle berths: " + availableMiddleBerths);
         System.out.println("Available lower berths: " + availableLowerBerths);
         System.out.println("Available RAC tickets: " + availableRac);
@@ -145,14 +149,17 @@ public class TicketSystem {
 
     public void printBooked() {
         if(passenger.size() != 0) {
+            System.out.println("----- Booked tickets -----");
             for(Passenger p : passenger.values()) {
+                System.out.println("==========================");
                 System.out.println("Passenger name: " + p.name);
                 System.out.println("Passenger age: " + p.age);
                 System.out.println("Passenger id: " + p.passengerId);
-                System.out.println("Seat alloted: " + p.alloted +""+ p.number);
+                System.out.println("Seat alloted: " + p.alloted + "" + p.number);
+                System.out.println("==========================");
             }
         } else{
-            System.out.println("No tickets booked");
+            System.out.println("\nNo tickets booked");
         }   
     }
 

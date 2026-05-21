@@ -115,6 +115,25 @@ public class TicketSystem {
             BookTicketsHere.bookTicket(passengerFromRac);
         }
     }
+    public void promoteRacToConfirmed(Passenger p, int berthInfo, String allotedBerth) {
+        if (p == null) {
+            return;
+        }
+        p.number = berthInfo;
+        p.alloted = allotedBerth;
+        bookedTickets.add(p.passengerId);
+
+        if ("L".equals(allotedBerth)) {
+            availableLowerBerths--;
+            lowerBerthPositions.remove(Integer.valueOf(berthInfo));
+        } else if ("M".equals(allotedBerth)) {
+            availableMiddleBerths--;
+            middleBerthPositions.remove(Integer.valueOf(berthInfo));
+        } else if ("U".equals(allotedBerth)) {
+            availableUpperBerths--;
+            upperBerthPositions.remove(Integer.valueOf(berthInfo));
+         }
+    }
 
     public void printAvailable() {
         System.out.println("Available upper berths: " + availableUpperBerths);
